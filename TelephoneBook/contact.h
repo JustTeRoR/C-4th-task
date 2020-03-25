@@ -4,7 +4,7 @@
 #include "logger.h"
 #include<string>
 
-enum class contactGroup { };
+enum class contactGroup { FAMILY, WORK, FRIENDS, FAVOURITES };
 
 class Contact : Logger
 {

@@ -297,7 +297,7 @@
     <item row="12" column="0">
      <widget class="QPushButton" name="createContact_btn">
       <property name="text">
-       <string>Create contact</string>
+       <string>Создать контакт</string>
       </property>
      </widget>
     </item>
@@ -338,5 +338,22 @@ p, li { white-space: pre-wrap; }
   </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>createContact_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>createContact</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>140</x>
+     <y>744</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>139</x>
+     <y>390</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

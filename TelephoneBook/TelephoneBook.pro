@@ -21,14 +21,16 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     notification.cpp \
-    createcontact.cpp
+    createcontact.cpp \
+    phonebook.cpp
 
 HEADERS += \
     contact.h \
     logger.h \
     mainwindow.h \
     notification.h \
-    createcontact.h
+    createcontact.h \
+    phonebook.h
 
 FORMS += \
     mainwindow.ui \
