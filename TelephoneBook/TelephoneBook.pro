@@ -20,16 +20,19 @@ SOURCES += \
     logger.cpp \
     main.cpp \
     mainwindow.cpp \
-    notification.cpp
+    notification.cpp \
+    createcontact.cpp
 
 HEADERS += \
     contact.h \
     logger.h \
     mainwindow.h \
-    notification.h
+    notification.h \
+    createcontact.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+     createcontact.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
