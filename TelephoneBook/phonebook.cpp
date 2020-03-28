@@ -58,7 +58,57 @@ bool PhoneBook::CreateNewContact(std::string name, std::string surname, std::str
     return  true;
 
 }
-bool PhoneBook::CreateNewNotification()
-{
 
+bool PhoneBook::CreateNewNotification(time_t date, std::string notificationName, std::string notificationDetails, bool isGroupNotification, contactGroup relatedGroup, std::string &errorMessage)
+{
+    if (notificationName == "")
+    {
+        errorMessage = "Введите, пожалуйста, название напоминания";
+        return false;
+    }
+
+    if (relatedGroup == contactGroup::NOTINGROUP)
+    {
+        errorMessage = "Для группового напоминания обязательно должна быть выбрана группа";
+        return false;
+    }
+
+    notificationList_.push_back(Notification{date,notificationName,notificationDetails,isGroupNotification, relatedGroup });
+    return true;
+}
+
+bool PhoneBook::CreateNewNotification(time_t date, std::string notificationName, std::string notificationDetails, bool isGroupNotification, std::string relatedContactPhone, std::string &errorMessage)
+{
+    if (notificationName == "")
+    {
+        errorMessage = "Введите, пожалуйста, название напоминания";
+        return false;
+    }
+
+    if (relatedContactPhone == "")
+    {
+        errorMessage = "Для негруппового напоминания номер обязательно должен быть заполнен";
+        return false;
+    }
+
+    if (relatedContactPhone == "")
+    {
+        errorMessage = "Для негруппового напоминания номер обязательно должен быть заполнен";
+        return false;
+    }
+
+    Contact *relatedContact  = nullptr;
+    for (int i = 0; i < contactList_.size(); i++)
+    {
+        if (contactList_[i].tepephoneNum_ == relatedContactPhone)
+            *relatedContact = contactList_[i];
+    }
+
+    if (*relatedContact == nullptr)
+    {
+        errorMessage = "Указан номер, которого не существует в списке контактов";
+        return false;
+    }
+    notificationList_.push_back(Notification{date,notificationName,notificationDetails,isGroupNotification, relatedGroup });
+    return true;
 }
