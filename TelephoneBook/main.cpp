@@ -7,12 +7,12 @@
 #include "createcontact.h"
 #include <QApplication>
 
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
     createContact c;
     w.show();
-    c.show();
     return a.exec();
 }

@@ -8,6 +8,7 @@
 #include <QTextBrowser>
 #include <QMessageBox>
 #include "phonebook.h"
+#include "logger.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class createContact; }
@@ -19,6 +20,7 @@ class createContact : public QWidget
     Q_OBJECT
 
 public:
+    //, Logger *logger = nullptr, PhoneBook *phonebook = nullptr
     explicit createContact(QWidget *parent = nullptr);
     ~createContact();
 private slots:
@@ -26,7 +28,8 @@ private slots:
 
 private:
     Ui::createContact *ui;
-    PhoneBook phoneBook;
+    Logger logger_;
+    PhoneBook phoneBook_;
 };
 
 #endif // CREATECONTACT_H

@@ -1,13 +1,14 @@
 #include "createcontact.h"
 #include "ui_createcontact.h"
-#include "logger.h"
 
+ //, Logger *logger, PhoneBook *phonebook
 createContact::createContact(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::createContact)
 {
     ui->setupUi(this);
-    Logger logger = Logger();
+    //logger_ = *logger;
+   // phoneBook_ = *phonebook;
 }
 
 void createContact::on_pushButtonAddContact_clicked()
@@ -23,7 +24,7 @@ void createContact::on_pushButtonAddContact_clicked()
         newContactGroup = contactGroup::FAVOURITES;
 
     std::string errorMessage;
-    if (!phoneBook.CreateNewContact(
+    if (!phoneBook_.CreateNewContact(
                 ui->name_le->text().toStdString(),
                 ui->surname_le->text().toStdString(),
                 ui->fatrhersName_le->text().toStdString(),
@@ -35,8 +36,7 @@ void createContact::on_pushButtonAddContact_clicked()
         messageBox.exec();
         return;
     }
-    //saveToFile("Add student: " + ui->lineEdit->text(), 5);
-
+    logger_.saveToFile("Add contact: " + ui->name_le->text() + " " + ui->surname_le->text() + " " + ui->phoneNumber_le->text(), 5);
 }
 
 createContact::~createContact()
