@@ -33,6 +33,7 @@ HEADERS += \
     phonebook.h
 
 FORMS += \
+    createNotification.ui \
     mainwindow.ui \
      createcontact.ui
 

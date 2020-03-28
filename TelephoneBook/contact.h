@@ -4,7 +4,7 @@
 #include "logger.h"
 #include<string>
 
-enum class contactGroup { FAMILY, WORK, FRIENDS, FAVOURITES };
+enum class contactGroup { FAMILY, WORK, FRIENDS, FAVOURITES, NOTINGROUP};
 
 class Contact : Logger
 {
@@ -16,7 +16,7 @@ protected:
     contactGroup contactGroup_;
 
 public:
-    Contact(std::string name, std::string surname, std::string fathersName,std::string tepephoneNumber, contactGroup contactGroup);
+    Contact(std::string name, std::string surname, std::string fathersName,std::string telephoneNumber, contactGroup contactGroup);
 
 };
 
