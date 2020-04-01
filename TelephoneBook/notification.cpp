@@ -7,6 +7,7 @@ Notification::Notification(QDateTime date, std::string notificationName, std::st
     this->notificationDetails_ = notificationDetails;
     this->isGroupNotification_ = isGroupNotification;
     this->relatedToGroup_ = relatedGroup;
+    this->relatedToContact_ = nullptr;
 }
 
 Notification::Notification(QDateTime date, std::string notificationName, std::string notificationDetails, bool isGroupNotification, Contact *relatedContact)
@@ -53,7 +54,14 @@ std::string Notification::getNameNotification()
  std::string Notification::getRelatedContactNotificationStringRepresentance()
  {
      std::string result;
-     (relatedToContact_ != nullptr)  ?  result = this->relatedToContact_->getContactPhoneNumber() : result = "групповое напоминание";
+     if (relatedToContact_ != nullptr)
+     {
+         result = this->relatedToContact_->getContactPhoneNumber();
+     }
+     else
+     {
+         result = "групповое напоминание";
+     }
      return result;
  }
 

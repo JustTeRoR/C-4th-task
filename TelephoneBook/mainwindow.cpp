@@ -65,9 +65,16 @@ void MainWindow::update()
             return;
     }
 
+    while (row_contact < ROWLIMIT) {
+        m_model_contacts->item(row_contact, 0)->clearData();
+        m_model_contacts->item(row_contact, 1)->clearData();
+        m_model_contacts->item(row_contact, 2)->clearData();
+        ++row_contact;
+    }
+
     for (Notification &notification : phonebook_->getNotificationList()) {
         m_model_notifications->item(row_notification, 0)->setText(QString(notification.getNameNotification().c_str()));
-        m_model_notifications->item(row_notification, 1)->setText(notification.getDateNotification().toString("yyyy-MM-dd") + " " +notification.getDateNotification().toString("hh::mm"));
+        m_model_notifications->item(row_notification, 1)->setText(notification.getDateNotification().toString("yyyy-MM-dd") + " " +notification.getDateNotification().toString("hh:mm"));
         m_model_notifications->item(row_notification,2)->setText(QString(notification.getDetailsNotification().c_str()));
         m_model_notifications->item(row_notification,3)->setText(QString(notification.getNotificationGroupStringRepresentance().c_str()));
         m_model_notifications->item(row_notification,4)->setText(QString(notification.getRelatedContactNotificationStringRepresentance().c_str()));
@@ -104,9 +111,9 @@ void MainWindow::on_DeleteContactButton_clicked()
 
     QModelIndexList selectedRows = selectionModel->selectedRows();
     std::vector< std::string> stringsForRemoving;
-    for (const auto &model : selectedRows)
-        if (static_cast<uint>(model.row()) < phonebook_->getContactList().size())
-            stringsForRemoving.push_back(phonebook_->getContactList()[model.row()].getContactPhoneNumber());
+    for (const auto &model_contact : selectedRows)
+        if (static_cast<uint>(model_contact.row()) < phonebook_->getContactList().size())
+            stringsForRemoving.push_back(phonebook_->getContactList()[model_contact.row()].getContactPhoneNumber());
 
     for (const auto &string : stringsForRemoving) {
         phonebook_->deleteContact(string);
