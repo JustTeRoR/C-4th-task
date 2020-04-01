@@ -139,14 +139,14 @@
         <item>
          <widget class="QRadioButton" name="work_rb">
           <property name="text">
-           <string>Семья</string>
+           <string>Работа</string>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QRadioButton" name="favourite_rb">
           <property name="text">
-           <string>Работа</string>
+           <string>Избранные</string>
           </property>
          </widget>
         </item>
@@ -160,7 +160,7 @@
         <item>
          <widget class="QRadioButton" name="family_rb">
           <property name="text">
-           <string>Избранные</string>
+           <string>Семья</string>
           </property>
          </widget>
         </item>

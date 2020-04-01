@@ -6,10 +6,10 @@
 #include "logger.h"
 #include "contact.h"
 
-class Notification : Logger
+class Notification
 {
 protected:
-    time_t date_;
+    QDateTime date_;
     std::string notificationName_;
     std::string notificationDetails_;
     bool isGroupNotification_;
@@ -17,8 +17,13 @@ protected:
     contactGroup relatedToGroup_;
 
 public:
-    Notification(time_t date, std::string notificationName, std::string notificationDetails, bool isGroupNotification, Contact *relatedContact);
-    Notification(time_t date, std::string notificationName, std::string notificationDetails, bool isGroupNotification, contactGroup relatedGroup);
+    Notification(QDateTime date, std::string notificationName, std::string notificationDetails, bool isGroupNotification, Contact *relatedContact);
+    Notification(QDateTime date, std::string notificationName, std::string notificationDetails, bool isGroupNotification, contactGroup relatedGroup);
+    std::string getNameNotification();
+    std::string getDetailsNotification();
+    std::string getRelatedContactNotificationStringRepresentance();
+    std::string getNotificationGroupStringRepresentance();
+    QDateTime getDateNotification();
 };
 
 #endif // NOTIFICATION_H

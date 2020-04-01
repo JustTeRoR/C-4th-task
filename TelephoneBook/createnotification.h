@@ -19,14 +19,16 @@ class createNotification : public QWidget
     Q_OBJECT
 
 public:
-    explicit createNotification(QWidget *parent = nullptr);
+    explicit createNotification(QWidget *parent = nullptr,Logger *logger = nullptr, PhoneBook *phonebook = nullptr);
     ~createNotification();
 
 private slots:
-    void on_pushButtonAddNotificationButton_clicked();
+    void on_AddNotificationButton_clicked();
 
 private:
     Ui::createNotification *ui;
+    Logger *logger_;
+    PhoneBook *phoneBook_;
 };
 
 #endif // CREATENOTIFICATION_H

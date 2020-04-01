@@ -216,7 +216,7 @@
            </font>
           </property>
           <property name="text">
-           <string>Семья</string>
+           <string>Работа</string>
           </property>
          </widget>
         </item>
@@ -236,7 +236,7 @@
            </font>
           </property>
           <property name="text">
-           <string>Работа</string>
+           <string>Избранные</string>
           </property>
          </widget>
         </item>
@@ -276,7 +276,7 @@
            </font>
           </property>
           <property name="text">
-           <string>Избранные</string>
+           <string>Семья</string>
           </property>
          </widget>
         </item>

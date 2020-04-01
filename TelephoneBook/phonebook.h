@@ -14,9 +14,14 @@ protected:
     std::vector <Notification> notificationList_;
 public:
     PhoneBook();
-    bool CreateNewContact(std::string name, std::string surname, std::string fathersName,std::string tepephoneNumber, contactGroup contactGroup,  std::string &errorMessage);
-    bool CreateNewNotification(time_t date, std::string notificationName, std::string notificationDetails, bool isGroupNotification, contactGroup relatedGroup, std::string &errorMessage);
-    bool CreateNewNotification(time_t date, std::string notificationName, std::string notificationDetails, bool isGroupNotification, std::string relatedContactPhone, std::string &errorMessage);
+    bool CreateNewContact(std::string name, std::string surname, std::string fathersName,std::string telephoneNumber, contactGroup contactGroup,  std::string &errorMessage);
+    bool CreateNewNotification(QDateTime date, std::string notificationName, std::string notificationDetails, bool isGroupNotification, contactGroup relatedGroup, std::string &errorMessage);
+    bool CreateNewNotification(QDateTime date, std::string notificationName, std::string notificationDetails, bool isGroupNotification, std::string relatedContactPhone, std::string &errorMessage);
+
+    std::vector<Contact> getContactList();
+    std::vector<Notification> getNotificationList();
+    void deleteContact(std::string telephoneNumber);
+    void deleteNotification(std::string notificationName);
 };
 
 #endif // PHONEBOOK_H

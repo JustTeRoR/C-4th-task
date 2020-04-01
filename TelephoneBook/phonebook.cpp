@@ -59,7 +59,7 @@ bool PhoneBook::CreateNewContact(std::string name, std::string surname, std::str
 
 }
 
-bool PhoneBook::CreateNewNotification(time_t date, std::string notificationName, std::string notificationDetails, bool isGroupNotification, contactGroup relatedGroup, std::string &errorMessage)
+bool PhoneBook::CreateNewNotification(QDateTime date, std::string notificationName, std::string notificationDetails, bool isGroupNotification, contactGroup relatedGroup, std::string &errorMessage)
 {
     if (notificationName == "")
     {
@@ -77,7 +77,7 @@ bool PhoneBook::CreateNewNotification(time_t date, std::string notificationName,
     return true;
 }
 
-bool PhoneBook::CreateNewNotification(time_t date, std::string notificationName, std::string notificationDetails, bool isGroupNotification, std::string relatedContactPhone, std::string &errorMessage)
+bool PhoneBook::CreateNewNotification(QDateTime date, std::string notificationName, std::string notificationDetails, bool isGroupNotification, std::string relatedContactPhone, std::string &errorMessage)
 {
     if (notificationName == "")
     {
@@ -97,18 +97,52 @@ bool PhoneBook::CreateNewNotification(time_t date, std::string notificationName,
         return false;
     }
 
+    //Здесь проьлема с null
     Contact *relatedContact  = nullptr;
-    for (int i = 0; i < contactList_.size(); i++)
+    for (int i = 0; i < this->contactList_.size(); i++)
     {
-        if (contactList_[i].tepephoneNum_ == relatedContactPhone)
-            *relatedContact = contactList_[i];
+        if (this->contactList_[i].getContactPhoneNumber() == relatedContactPhone)
+            relatedContact = &this->contactList_[i];
     }
 
-    if (*relatedContact == nullptr)
+    if (relatedContact == nullptr)
     {
         errorMessage = "Указан номер, которого не существует в списке контактов";
         return false;
     }
-    notificationList_.push_back(Notification{date,notificationName,notificationDetails,isGroupNotification, relatedGroup });
+    notificationList_.push_back(Notification{date,notificationName,notificationDetails,isGroupNotification, relatedContact });
     return true;
 }
+
+std::vector<Contact> PhoneBook::getContactList()
+{
+    return contactList_;
+}
+
+std::vector<Notification> PhoneBook::getNotificationList()
+{
+    return notificationList_;
+}
+
+void PhoneBook::deleteContact(std::string telephoneNumber)
+{
+    uint contactId = 0;
+    for (auto &contact : contactList_) {
+        if (contact.getContactPhoneNumber() == telephoneNumber) {
+                 contactList_.erase(contactList_.begin() + contactId);
+        }
+        ++contactId;
+    }
+}
+
+void PhoneBook::deleteNotification(std::string notificationName)
+{
+    uint notificationId = 0;
+    for (auto &notification : notificationList_) {
+        if (notification.getNameNotification() == notificationName) {
+                 notificationList_.erase(notificationList_.begin() + notificationId);
+        }
+        ++notificationId;
+    }
+}
+

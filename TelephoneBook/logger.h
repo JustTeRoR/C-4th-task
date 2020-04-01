@@ -6,8 +6,6 @@
 #include <QDateTime>
 #include <QTextStream>
 
-
-const int ROWLIMIT = 40;
 const QString INFOFILE = "info.log";
 
 class Logger

@@ -20,16 +20,15 @@ class createContact : public QWidget
     Q_OBJECT
 
 public:
-    //, Logger *logger = nullptr, PhoneBook *phonebook = nullptr
-    explicit createContact(QWidget *parent = nullptr);
+    explicit createContact(QWidget *parent = nullptr,Logger *logger = nullptr, PhoneBook *phonebook = nullptr);
     ~createContact();
 private slots:
     void on_pushButtonAddContact_clicked();
 
 private:
     Ui::createContact *ui;
-    Logger logger_;
-    PhoneBook phoneBook_;
+    Logger *logger_;
+    PhoneBook *phoneBook_;
 };
 
 #endif // CREATECONTACT_H
