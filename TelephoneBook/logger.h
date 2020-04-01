@@ -6,7 +6,7 @@
 #include <QDateTime>
 #include <QTextStream>
 
-const QString INFOFILE = "info.log";
+const QString INFOFILE = "/Users/just_terror/TeleBook/TelephoneBook/info.log";
 
 class Logger
 {
