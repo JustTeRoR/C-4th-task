@@ -17,13 +17,19 @@ protected:
     contactGroup relatedToGroup_;
 
 public:
-    Notification(QDateTime date, std::string notificationName, std::string notificationDetails, bool isGroupNotification, Contact *relatedContact);
-    Notification(QDateTime date, std::string notificationName, std::string notificationDetails, bool isGroupNotification, contactGroup relatedGroup);
+    static bool createValidNotification(QDateTime date, std::string notificationName, std::string notificationDetails, bool isGroupNotification, std::string relatedContactPhone,
+                                        std::string &errorMessage, std::vector<Notification> &notificationList, std::vector<Contact> &contactList);
+    static bool createValidGroupNotification(QDateTime date, std::string notificationName, std::string notificationDetails, bool isGroupNotification, contactGroup relatedGroup,
+                                             std::string &errorMessage, std::vector<Notification> &notificationList);
     std::string getNameNotification();
     std::string getDetailsNotification();
     std::string getRelatedContactNotificationStringRepresentance();
     std::string getNotificationGroupStringRepresentance();
+    std::string getIsGroupNotificationStringRepresentance();
     QDateTime getDateNotification();
+private:
+    Notification(QDateTime date, std::string notificationName, std::string notificationDetails, bool isGroupNotification, Contact *relatedContact);
+    Notification(QDateTime date, std::string notificationName, std::string notificationDetails, bool isGroupNotification, contactGroup relatedGroup);
 };
 
 #endif // NOTIFICATION_H

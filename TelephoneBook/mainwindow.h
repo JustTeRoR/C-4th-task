@@ -14,6 +14,7 @@
 #include "phonebook.h"
 #include <createcontact.h>
 #include <createnotification.h>
+#include "datamanager.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -43,6 +44,7 @@ private:
     createNotification *createNotificationWindow_;
     PhoneBook *phonebook_;
     Logger *logger_;
+    DataManager *dataManager;
     QStandardItemModel *m_model_contacts = nullptr;
     QStandardItemModel *m_model_notifications = nullptr;
     std::vector<std::pair<std::string, std::string>> contactAndNumbers;

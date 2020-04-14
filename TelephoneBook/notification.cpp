@@ -69,3 +69,73 @@ std::string Notification::getNameNotification()
  {
     return this->date_;
  }
+
+
+ bool Notification::createValidNotification(QDateTime date, std::string notificationName, std::string notificationDetails, bool isGroupNotification, std::string relatedContactPhone,
+                                     std::string &errorMessage, std::vector<Notification> &notificationList, std::vector<Contact> &contactList)
+ {
+     if (notificationName == "")
+     {
+         errorMessage = "Введите, пожалуйста, название напоминания";
+         return false;
+     }
+
+     if (relatedContactPhone == "")
+     {
+         errorMessage = "Для негруппового напоминания номер обязательно должен быть заполнен";
+         return false;
+     }
+
+     if (relatedContactPhone == "")
+     {
+         errorMessage = "Для негруппового напоминания номер обязательно должен быть заполнен";
+         return false;
+     }
+
+
+     Contact *relatedContact  = nullptr;
+     for (int i = 0; i < contactList.size(); i++)
+     {
+         if (contactList[i].getContactPhoneNumber() == relatedContactPhone)
+             relatedContact = &contactList[i];
+     }
+
+     if (relatedContact == nullptr)
+     {
+         errorMessage = "Указан номер, которого не существует в списке контактов";
+         return false;
+     }
+     notificationList.push_back(Notification{date,notificationName,notificationDetails,isGroupNotification, relatedContact });
+     return true;
+ }
+ bool Notification::createValidGroupNotification(QDateTime date, std::string notificationName, std::string notificationDetails, bool isGroupNotification, contactGroup relatedGroup,
+                                          std::string &errorMessage, std::vector<Notification> &notificationList)
+ {
+     if (notificationName == "")
+     {
+         errorMessage = "Введите, пожалуйста, название напоминания";
+         return false;
+     }
+
+     if (relatedGroup == contactGroup::NOTINGROUP)
+     {
+         errorMessage = "Для группового напоминания обязательно должна быть выбрана группа";
+         return false;
+     }
+
+     notificationList.push_back(Notification{date,notificationName,notificationDetails,isGroupNotification, relatedGroup });
+     return true;
+
+ }
+
+ std::string Notification::getIsGroupNotificationStringRepresentance()
+ {
+    if(isGroupNotification_)
+    {
+        return "YES";
+    }
+    else
+    {
+        return "NO";
+    }
+ }

@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     contact.cpp \
     createnotification.cpp \
+    datamanager.cpp \
     logger.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -28,6 +29,7 @@ SOURCES += \
 HEADERS += \
     contact.h \
     createnotification.h \
+    datamanager.h \
     logger.h \
     mainwindow.h \
     notification.h \

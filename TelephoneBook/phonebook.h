@@ -5,9 +5,7 @@
 #include "notification.h"
 #include <vector>
 
-const int RUSSIAN_PHONE_NUMBER_LENGTH = 12; //with + sign
-
-class PhoneBook : Logger
+class PhoneBook
 {
 protected:
     std::vector <Contact> contactList_;
@@ -18,10 +16,11 @@ public:
     bool CreateNewNotification(QDateTime date, std::string notificationName, std::string notificationDetails, bool isGroupNotification, contactGroup relatedGroup, std::string &errorMessage);
     bool CreateNewNotification(QDateTime date, std::string notificationName, std::string notificationDetails, bool isGroupNotification, std::string relatedContactPhone, std::string &errorMessage);
 
-    std::vector<Contact> getContactList();
-    std::vector<Notification> getNotificationList();
+    std::vector<Contact>& getContactList();
+    std::vector<Notification>& getNotificationList();
     void deleteContact(std::string telephoneNumber);
     void deleteNotification(std::string notificationName);
+
 };
 
 #endif // PHONEBOOK_H

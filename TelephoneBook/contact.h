@@ -5,6 +5,7 @@
 #include<string>
 
 enum class contactGroup { FAMILY, WORK, FRIENDS, FAVOURITES, NOTINGROUP};
+const int RUSSIAN_PHONE_NUMBER_LENGTH = 12; //with + sign
 
 class Contact
 {
@@ -16,10 +17,14 @@ protected:
     contactGroup contactGroup_;
 
 public:
-    Contact(std::string name, std::string surname, std::string fathersName,std::string telephoneNumber, contactGroup contactGroup);
+    static bool createValidContact(std::string name, std::string surname, std::string fathersName,std::string telephoneNumber, contactGroup contactGroup,  std::string &errorMessage, std::vector<Contact> &contactList);
     std::string getContactPhoneNumber();
     std::string getContactFullName();
     std::string getContactGroupStringRepresentance();
+
+private:
+    Contact(std::string name, std::string surname, std::string fathersName,std::string telephoneNumber, contactGroup contactGroup);
+    static bool verifyForDuplicateNumber(std::string number, std::vector<Contact> &contactList);
 };
 
 #endif // CONTACT_H

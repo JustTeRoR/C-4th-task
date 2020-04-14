@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     this->logger_ = new Logger();
     this->phonebook_ = new PhoneBook();
+    this->dataManager = new DataManager();
 
     this->createContactWindow_ = new createContact(nullptr, logger_,phonebook_);
     this->createNotificationWindow_ = new createNotification(nullptr, logger_,phonebook_);
@@ -47,6 +48,8 @@ MainWindow::MainWindow(QWidget *parent)
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
     timer->start();
+
+    dataManager->getDataFromFile(phonebook_->getContactList(), phonebook_->getNotificationList());
 }
 
 void MainWindow::update()
@@ -139,6 +142,11 @@ void MainWindow::on_DeleteNotificationButton_clicked()
 
 MainWindow::~MainWindow()
 {
+    dataManager->saveDataToFile('\n',*phonebook_);
     delete ui;
+    delete logger_;
+    delete phonebook_;
+    delete createContactWindow_;
+    delete createNotificationWindow_;
 }
 
